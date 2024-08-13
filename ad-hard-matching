@@ -4,3 +4,4 @@ objectGuid : GUID
 Converted: ConvertedGUID
 Get-Msoluser -UserPrincipalName emailaddress | Select-Object ImmutableId
 Set-MsolUser -UserPrincipalName emailaddress -ImmutableId ConvertedGUID
+$onlineusers = Get-MsolUser -All | Select-Object UserprincipalName,ImmutableID,WhenCreated,LastDirSyncTime| Export-Csv c:\MyFile.csv -NoTypeInformation
