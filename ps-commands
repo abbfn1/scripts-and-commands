@@ -1,0 +1,7 @@
+Start-AdSyncSyncCycle -PolicyType Delta
+Start-ManagedFolderAssistant -Identity emailaddress
+Enable-Mailbox -Identity "username" -Archive
+Get-Mailbox "username" | FL LitigationHoldEnabled,InPlaceHolds
+Get-Mailbox "username" | Format-List InPlaceHolds
+Enable-Mailbox <user mailbox> -AutoExpandingArchive
+Set-OrganizationConfig -AutoExpandingArchive
