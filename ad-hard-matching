@@ -1,0 +1,11 @@
+Get-ADUser username | fl objectGuid
+objectGuid : GUID
+[Convert]::ToBase64String([guid]::New("GUID").ToByteArray())
+Converted: ConvertedGUID
+Get-Msoluser -UserPrincipalName emailaddress | Select-Object ImmutableId
+Set-MsolUser -UserPrincipalName emailaddress -ImmutableId ConvertedGUID
+Import-module -Name "C:\Program Files\Microsoft Azure AD Sync\Bin\ADSync"
+Install-Module -Name MSOnline
+Connect-MsolService
+Set-MsolDirSyncEnabled -EnableDirSync $true
+(Get-MSOLCompanyInformation).DirectorySynchronizationEnabled
